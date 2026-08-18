@@ -643,7 +643,65 @@
   </footer>
     
     <script>
-      
+  document.addEventListener("DOMContentLoaded", function () {
+    const viewButtons = document.querySelectorAll("[data-view]");
+    const itineraryView = document.getElementById("itineraryView");
+    const mapView = document.getElementById("mapView");
+
+    viewButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        const selectedView = button.dataset.view;
+
+        viewButtons.forEach(function (item) {
+          item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        if (selectedView === "itinerary") {
+          itineraryView.classList.add("active");
+          mapView.classList.remove("active");
+        }
+
+        if (selectedView === "map") {
+          mapView.classList.add("active");
+          itineraryView.classList.remove("active");
+        }
+      });
+    });
+
+    const dayButtons = document.querySelectorAll(".day-button");
+    const daySections = document.querySelectorAll(".day-section");
+    const mapDayTitle = document.getElementById("mapDayTitle");
+
+    dayButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        const selectedDay = button.dataset.day;
+
+        dayButtons.forEach(function (item) {
+          item.classList.remove("active");
+        });
+
+        daySections.forEach(function (section) {
+          section.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        const selectedSection = document.querySelector(
+          '.day-section[data-day="' + selectedDay + '"]'
+        );
+
+        if (selectedSection) {
+          selectedSection.classList.add("active");
+        }
+
+        if (mapDayTitle) {
+          mapDayTitle.textContent = "Day " + selectedDay;
+        }
+      });
+    });
+  });
 </script>
 </body>
 </html>
