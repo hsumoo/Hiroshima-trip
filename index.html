@@ -362,22 +362,22 @@
     <main>
 
   <div class="view-switch">
-    <button
-      class="view-button active"
-      data-view="map"
-      type="button"
-    >
-      🗺 行程地圖
-    </button>
+  <button
+    class="view-button active"
+    data-view="itinerary"
+    type="button"
+  >
+    📅 行程表
+  </button>
 
-    <button
-      class="view-button"
-      data-view="itinerary"
-      type="button"
-    >
-      📅 行程表
-    </button>
-  </div>
+  <button
+    class="view-button"
+    data-view="map"
+    type="button"
+  >
+    🗺️ 行程地圖
+  </button>
+</div>
 
   <div class="day-switch">
   <button class="day-button active" data-day="1" type="button">Day 1</button>
@@ -387,12 +387,15 @@
   <button class="day-button" data-day="5" type="button">Day 5</button>
 </div>
 
-  <div id="mapView" class="map-view active">
-    <div id="trip-map"></div>
+<div id="mapView" class="map-view">
+  <div class="map-placeholder">
+    <h2 id="mapDayTitle">Day 1</h2>
+    <p>🗺️ 行程地圖待更新</p>
   </div>
+</div>
 
-  <div id="itineraryView" class="itinerary-view">
-    <section id="day1" class="day-section active" data-day="1">
+<div id="itineraryView" class="itinerary-view active">
+  <section id="day1" class="day-section active" data-day="1">
       <div class="day-header">
         <h2>2/2（二）Day 1</h2>
     <div>抵達廣島、吳市半日包車與遊覽船</div>
@@ -637,429 +640,15 @@
   <footer>
     岡山・倉敷 2026 Family Trip
   </footer>
+    
     <script>
-  const tripDays = {
-    1: [
-  {
-    number: 1,
-    name: "岡山機場（抵達＆租車）",
-    time: "約14:30",
-    note: "✈️ 抵達岡山機場，完成租車手續後出發",
-    lat: 34.7581105897522,
-    lng: 133.8557827383269,
-    map: "https://maps.app.goo.gl/i2qa6JgFQfyED9fn7"
-  },
-  {
-    number: 2,
-    name: "Hotel Livemax Kurashiki Station 停車場",
-    time: "約16:00",
-    note: "🏨 辦理 Check-in、稍作休息",
-    lat: 34.60234118447711,
-    lng: 133.7674346,
-    map: "https://maps.app.goo.gl/9bkRkCusRo4bqjFT8"
-  },
-  {
-    number: 3,
-    name: "倉敷晚餐",
-    time: "18:00–20:00",
-    note: "🍽️ 倉敷站周邊晚餐（可選燒肉、居酒屋、味噌豬排等）",
-    lat: 34.60130871950535,
-    lng: 133.7654365423293,
-    map: "https://maps.app.goo.gl/ecSLsrzo4zjk79BZ7?g_st=ic"
-  },
-  {
-    number: 4,
-    name: "返回飯店",
-    time: "晚餐後",
-    note: "🚶 步行返回飯店休息",
-    lat: 34.6027426667889,
-    lng: 133.76866954602423,
-    map: "https://maps.app.goo.gl/yMEexdkwoJqo7BVk8"
-  }
-],
+      const mapDayTitle = document.getElementById("mapDayTitle");
 
-    2: [
-  {
-    number: 1,
-    name: "倉敷飯店（出發）",
-    time: "09:30",
-    note: "🚗 從 Hotel Livemax 出發前往岡山市區",
-    lat: 34.6027426667889,
-    lng: 133.76866954602423,
-    map: "https://maps.app.goo.gl/yMEexdkwoJqo7BVk8"
-  },
-  {
-    number: 2,
-    name: "岡山後樂園＆岡山城",
-    time: "10:20–12:30",
-    note: "🌳 岡山後樂園＋🏯 岡山城，兩處相連可步行往返",
-    lat: 34.6696480463984,
-    lng: 133.93509801164646,
-    map: "https://maps.app.goo.gl/iZtguTkVwAvPKjxm9"
-  },
-  {
-    number: 3,
-    name: "AEON Mall 岡山｜午餐＆逛街",
-    time: "13:00–18:00",
-    note: "🍽️ 13:00–15:00 Myojinmaru Okayama AEON Mall Store 海鮮料理午餐<br>⚠️ 午餐不可訂位<br>🛍️ 15:00–18:00 AEON Mall 逛街",
-    lat: 34.662168381426476,
-    lng: 133.9176498576707,
-    map: "https://maps.app.goo.gl/zikj8bhymCVDoa8M7"
-  },
-  {
-    number: 4,
-    name: "ShuShu 岡山奉還町店｜燒肉晚餐",
-    time: "19:00–21:00",
-    note: "🥩 炭火燒肉＆牛腸鍋｜牛、豬、雞皆有，小朋友可搭配麵或飯，建議提前訂位",
-    lat: 34.66884919885353,
-    lng: 133.91649952664375,
-    map: "https://maps.app.goo.gl/EhKM3Bi4ni8PAbs97?g_st=ic"
-  },
-  {
-    number: 5,
-    name: "返回倉敷飯店 停車場",
-    time: "約21:00後",
-    note: "🚗 晚餐結束後返回 Hotel Livemax 休息",
-    lat: 34.6023588465673,
-    lng: 133.76752043068282,
-    map: "https://maps.app.goo.gl/nLGcjNsMCattxs1K7"
-  }
-],
-
-    3: [
-  {
-    number: 1,
-    name: "倉敷飯店（出發）",
-    time: "08:30",
-    note: "從 Hotel Livemax 出發前往倉敷美觀地區",
-    lat: 34.6027426667889,
-    lng: 133.76866954602423,
-    map: "https://maps.app.goo.gl/yMEexdkwoJqo7BVk8"
-  },
-  {
-    number: 2,
-    name: "倉敷美觀地區＆午餐",
-    time: "09:00–13:30",
-    note: "🚤 購買倉敷川遊船票、搭船、逛美觀地區，12:00–13:30 於附近享用午餐",
-    lat: 34.594700385173795,
-    lng: 133.77281387301213,
-    map: "https://maps.app.goo.gl/9pkVC1DcGRPMhf3a8"
-  },
-  {
-    number: 3,
-    name: "兒島牛仔褲街",
-    time: "14:30–16:00",
-    note: "👖 逛牛仔褲街、丹寧品牌店、RIVETS 靛藍冰淇淋與丹寧扭蛋",
-    lat: 34.46838885645526,
-    lng: 133.80324521349394,
-    map: "https://maps.app.goo.gl/N7MsxocaE3QhmwMZ8?g_st=ic"
-  },
-  {
-    number: 4,
-    name: "鷲羽山展望台",
-    time: "16:10–17:00",
-    note: "🌉 欣賞瀨戶內海與瀨戶大橋景色，傍晚拍照看海景",
-    lat: 34.43489131025344,
-    lng: 133.81538573068283,
-    map: "https://maps.app.goo.gl/e1NcjUVcdF9qrZjc9"
-  },
-  {
-  number: 5,
-  name: "兒島地區晚餐",
-  time: "17:00之後",
-  note: "🍽️ 依當天狀況選擇兒島地區餐廳用餐",
-  lat: 34.465903488000755,
-  lng: 133.80145835582326,
-  map: "https://maps.app.goo.gl/UNh7WmEuSsZH2ppo7"
-},
-  {
-    number: 6,
-    name: "返回倉敷飯店 停車場",
-    time: "晚餐後",
-    note: "🚗 晚餐結束後返回 Hotel Livemax 休息",
-    lat: 34.6023588465673,
-    lng: 133.76752043068282,
-    map: "https://maps.app.goo.gl/nLGcjNsMCattxs1K7"
-  }
-],
-
-    4: [
-  {
-    number: 1,
-    name: "倉敷飯店（出發）",
-    time: "09:30",
-    note: "🏨 辦理退房後出發前往吉備津神社",
-    lat: 34.6027426667889,
-    lng: 133.76866954602423,
-    map: "https://maps.app.goo.gl/yMEexdkwoJqo7BVk8"
-  },
-  {
-    number: 2,
-    name: "吉備津神社",
-    time: "10:00–11:30",
-    note: "⛩️ 桃太郎傳說發源地、360 公尺神話長廊、御守",
-    lat: 34.671858995663634,
-    lng: 133.8505584153414,
-    map: "https://maps.app.goo.gl/3rMBuQPaWpQSM7Bz5"
-  },
-  {
-    number: 3,
-    name: "午餐",
-    time: "11:30–13:30",
-    note: "🍽️ 可選鰻魚飯、拉麵或烏龍麵",
-    lat: 34.64379638631351,
-    lng: 133.89021805582325,
-    map: "https://maps.app.goo.gl/qsURnb2TSwdDDoRq8"
-  },
-  {
-    number: 4,
-    name: "まつだ牧場 ミルク工房",
-    time: "14:00–15:00",
-    note: "🍦 吃冰淇淋、看農場動物，返程前最後一站",
-    lat: 34.790543391448,
-    lng: 133.87082552883535,
-    map: "https://maps.app.goo.gl/kMnVqVZxRFtBjFHE9"
-  },
-  {
-    number: 5,
-    name: "加油站",
-    time: "15:00",
-    note: "⛽ 租車加滿油，準備還車",
-    lat: 34.76135291756044,
-    lng: 133.85472191349396,
-    map: "https://maps.app.goo.gl/hFe7MS7DWkDbqEFy7"
-  },
-  {
-    number: 6,
-    name: "還車／岡山機場",
-    time: "15:30–17:55",
-    note: "🚗 還車、辦理登機手續，搭乘 IT215 返回桃園",
-    lat: 34.7581105897522,
-    lng: 133.8557827383269,
-    map: "https://maps.app.goo.gl/i2qa6JgFQfyED9fn7"
-  }
-],
-};  
-  const dayColors = {
-    1: "#2467a6",
-    2: "#d87b16",
-    3: "#4f8c45",
-    4: "#c94a4a"
-  };
-
-  const map = L.map("trip-map").setView(
-    [34.63, 133.84],
-    10
-  );
-
-  L.tileLayer(
-    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    {
-      maxZoom: 19,
-      attribution: "&copy; OpenStreetMap contributors"
-    }
-  ).addTo(map);
-
-  let markers = [];
-  let routeLine = null;
-
-  function clearMap() {
-    markers.forEach(marker => map.removeLayer(marker));
-    markers = [];
-
-    if (routeLine) {
-      map.removeLayer(routeLine);
-      routeLine = null;
-    }
-  }
-
-  function createNumberIcon(number, color) {
-    return L.divIcon({
-      className: "",
-      html: `
-        <div style="
-          width:34px;
-          height:34px;
-          border-radius:50%;
-          background:${color};
-          color:white;
-          border:3px solid white;
-          box-shadow:0 2px 8px rgba(0,0,0,.25);
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          font-weight:800;
-          font-size:14px;
-        ">
-          ${number}
-        </div>
-      `,
-      iconSize: [34, 34],
-      iconAnchor: [17, 17]
-    });
-  }
-
-  function showDay(day) {
-    clearMap();
-
-    const locations = tripDays[day];
-    const color = dayColors[day];
-
-    const latLngs = [];
-
-    locations.forEach(location => {
-      const point = [location.lat, location.lng];
-      latLngs.push(point);
-
-      const marker = L.marker(
-        point,
-        {
-          icon: createNumberIcon(location.number, color)
-        }
-      ).addTo(map);
-
-      marker.bindPopup(`
-  <div style="min-width:220px;">
-    <div class="map-popup-title">
-      ${location.number}. ${location.name}
-    </div>
-
-    ${location.time ? `
-      <div style="margin-top:6px;font-weight:700;color:#0f4c81;">
-        ⏰ ${location.time}
-      </div>
-    ` : ""}
-
-    ${location.note ? `
-      <div style="margin-top:8px;line-height:1.5;">
-        ${location.note}
-      </div>
-    ` : ""}
-
-    <div style="margin-top:8px;font-size:12px;color:#68727d;">
-      📍 ${location.lat.toFixed(6)}, ${location.lng.toFixed(6)}
-    </div>
-
-    ${location.map ? `
-      <a
-        href="${location.map}"
-        target="_blank"
-        rel="noopener noreferrer"
-        style="
-          display:inline-block;
-          margin-top:10px;
-          padding:8px 12px;
-          border-radius:8px;
-          background:#247245;
-          color:white;
-          text-decoration:none;
-          font-weight:700;
-        "
-      >
-        📍 Google Maps
-      </a>
-    ` : ""}
-  </div>
-`);
-
-      markers.push(marker);
-    });
-
-    routeLine = L.polyline(
-      latLngs,
-      {
-        color: color,
-        weight: 5,
-        opacity: 0.85,
-        dashArray: "10,8"
-      }
-    ).addTo(map);
-
-    const bounds = L.latLngBounds(latLngs);
-
-    map.fitBounds(
-      bounds,
-      {
-        padding: [40, 40]
-      }
-    );
-  }
-
-  showDay(1);
-
-  const viewButtons =
-    document.querySelectorAll(".view-button");
-
-  const dayButtons =
-    document.querySelectorAll(".day-button");
-
-  const mapView =
-    document.getElementById("mapView");
-
-  const itineraryView =
-    document.getElementById("itineraryView");
-
-  let currentDay = 1;
-
-  viewButtons.forEach(button => {
-    button.addEventListener("click", () => {
-
-      viewButtons.forEach(btn =>
-        btn.classList.remove("active")
-      );
-
-      button.classList.add("active");
-
-      const view = button.dataset.view;
-
-      if (view === "map") {
-        mapView.classList.add("active");
-        itineraryView.classList.remove("active");
-
-        setTimeout(() => {
-          map.invalidateSize();
-          showDay(currentDay);
-        }, 100);
-      }
-
-      if (view === "itinerary") {
-        itineraryView.classList.add("active");
-        mapView.classList.remove("active");
-      }
-    });
+document.querySelectorAll(".day-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    mapDayTitle.textContent = `Day ${button.dataset.day}`;
   });
-
-  dayButtons.forEach(button => {
-    button.addEventListener("click", () => {
-
-      currentDay = Number(button.dataset.day);
-
-      dayButtons.forEach(btn =>
-        btn.classList.remove("active")
-      );
-
-      button.classList.add("active");
-
-      document
-        .querySelectorAll(".day-section")
-        .forEach(section => {
-          section.classList.remove("active");
-        });
-
-      const targetSection =
-        document.querySelector(
-          `.day-section[data-day="${currentDay}"]`
-        );
-
-      if (targetSection) {
-        targetSection.classList.add("active");
-      }
-
-      if (mapView.classList.contains("active")) {
-        showDay(currentDay);
-      }
-    });
-  });
+});
 </script>
 </body>
 </html>
