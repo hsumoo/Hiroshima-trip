@@ -353,7 +353,7 @@
   
 
     <p style="margin-top:18px;font-size:14px;opacity:.85;">
-        📅 最後更新：2026/08/17 11:55
+        📅 最後更新：2026/08/17 12:07
     </p>
 </header>
 
@@ -388,8 +388,9 @@
 </div>
 
 <div id="mapView" class="map-view">
+  <div id="trip-map" style="display: none;"></div>
+
   <div class="map-placeholder">
-    <h2 id="mapDayTitle">Day 1</h2>
     <p>🗺️ 行程地圖待更新</p>
   </div>
 </div>
@@ -642,13 +643,7 @@
   </footer>
     
     <script>
-      const mapDayTitle = document.getElementById("mapDayTitle");
-
-document.querySelectorAll(".day-button").forEach((button) => {
-  button.addEventListener("click", () => {
-    mapDayTitle.textContent = `Day ${button.dataset.day}`;
-  });
-});
+      
 </script>
 </body>
 </html>
