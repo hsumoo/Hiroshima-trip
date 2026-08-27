@@ -11,339 +11,368 @@
   <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0f4c81" />
+  <meta name="theme-color" content="#a51f2d" />
 
   <title>廣島🇯🇵5天4夜</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+ <style>
+  * {
+    box-sizing: border-box;
+  }
 
-    html {
-      scroll-behavior: smooth;
-    }
+  html {
+    scroll-behavior: smooth;
+  }
 
-    body {
-      margin: 0;
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Noto Sans TC",
-        "Microsoft JhengHei",
-        sans-serif;
-      background: #f3f5f7;
-      color: #243040;
-      line-height: 1.65;
-    }
+  body {
+    margin: 0;
+    color: #3f2925;
+    font-family:
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      "Noto Sans TC",
+      "Microsoft JhengHei",
+      sans-serif;
+    line-height: 1.65;
+    background:
+      radial-gradient(
+        circle at top left,
+        rgba(215, 170, 74, 0.1),
+        transparent 28%
+      ),
+      #fff8ed;
+  }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-    .hero {
-      padding: 44px 20px 34px;
-      color: white;
-      text-align: center;
-      background:
-        linear-gradient(
-          rgba(8, 47, 83, 0.72),
-          rgba(8, 47, 83, 0.85)
-        ),
-        url("https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1600&q=80")
-        center / cover;
-    }
+  .hero {
+    padding: 44px 20px 34px;
+    color: white;
+    text-align: center;
+    background:
+      linear-gradient(
+        rgba(116, 9, 24, 0.7),
+        rgba(139, 18, 34, 0.88)
+      ),
+      url("https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1600&q=80")
+      center / cover;
+  }
 
-    .hero h1 {
-      margin: 0 0 8px;
-      font-size: clamp(30px, 7vw, 52px);
-    }
+  .hero h1 {
+    margin: 0 0 8px;
+    font-size: clamp(30px, 7vw, 52px);
+    text-shadow: 0 3px 14px rgba(55, 0, 8, 0.38);
+  }
 
-    .hero p {
-      margin: 4px 0;
-      opacity: 0.95;
-    }
+  .hero p {
+    margin: 4px 0;
+    opacity: 0.95;
+  }
 
-    .day-nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      gap: 8px;
-      padding: 12px;
-      overflow-x: auto;
-      background: rgba(255, 255, 255, 0.96);
-      border-bottom: 1px solid #dce2e8;
-      backdrop-filter: blur(10px);
-    }
+  .day-nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    overflow-x: auto;
+    border-bottom: 1px solid #ead3a2;
+    background: rgba(255, 250, 240, 0.96);
+    backdrop-filter: blur(10px);
+  }
 
-    .day-nav a {
-      flex: 0 0 auto;
-      padding: 9px 15px;
-      color: white;
-      font-weight: 700;
-      border-radius: 999px;
-      background: #0f4c81;
-    }
+  .day-nav a {
+    flex: 0 0 auto;
+    padding: 9px 15px;
+    color: white;
+    font-weight: 700;
+    border-radius: 999px;
+    background: #a51f2d;
+  }
 
-    main {
-      width: min(920px, calc(100% - 28px));
-      margin: 28px auto 70px;
-    }
+  main {
+    width: min(920px, calc(100% - 28px));
+    margin: 28px auto 70px;
+  }
 
-    section {
-      scroll-margin-top: 85px;
-    }
+  section {
+    scroll-margin-top: 85px;
+  }
 
-    .day-header {
-      margin-bottom: 20px;
-      padding: 22px;
-      color: white;
-      border-radius: 18px;
-      background: linear-gradient(135deg, #0f4c81, #1976a3);
-      box-shadow: 0 10px 25px rgba(20, 50, 80, 0.12);
-    }
+  .day-header {
+    margin-bottom: 20px;
+    padding: 22px;
+    color: white;
+    border: 1px solid #d9ad52;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #971b2b, #c44238);
+    box-shadow: 0 10px 25px rgba(121, 20, 30, 0.16);
+  }
 
-    .day-header h2 {
-      margin: 0 0 4px;
+  .day-header h2 {
+    margin: 0 0 4px;
+  }
+
+  .timeline {
+    position: relative;
+    margin-left: 18px;
+    padding-left: 28px;
+    border-left: 3px solid #e2bd6b;
+  }
+
+  .event {
+    position: relative;
+    margin-bottom: 24px;
+    padding: 20px;
+    border: 1px solid #f0dfbd;
+    border-radius: 16px;
+    background: #fffdf8;
+    box-shadow: 0 7px 22px rgba(94, 49, 32, 0.08);
+  }
+
+  .event::before {
+    position: absolute;
+    top: 24px;
+    left: -39px;
+    width: 16px;
+    height: 16px;
+    content: "";
+    border: 4px solid #fff8ed;
+    border-radius: 50%;
+    background: #b32635;
+  }
+
+  .time {
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 4px 11px;
+    color: #8e1725;
+    font-size: 14px;
+    font-weight: 800;
+    border: 1px solid #efd69b;
+    border-radius: 999px;
+    background: #fff1cf;
+  }
+
+  .event h3 {
+    margin: 0 0 8px;
+    font-size: 21px;
+  }
+
+  .event p {
+    margin: 6px 0;
+  }
+
+  .tip {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-left: 4px solid #d39b2f;
+    border-radius: 8px;
+    background: #fff5dc;
+  }
+
+  .map-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    padding: 10px 15px;
+    color: white;
+    font-weight: 700;
+    border-radius: 9px;
+    background: #9b2430;
+    transition: 0.2s;
+  }
+
+  .map-button:hover {
+    background: #771521;
+    transform: translateY(-1px);
+  }
+
+  .restaurant-grid {
+    display: grid;
+    gap: 14px;
+    margin-top: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .restaurant {
+    padding: 16px;
+    border: 1px solid #ead7ae;
+    border-radius: 13px;
+    background: #fffaf0;
+  }
+
+  .restaurant h4 {
+    margin: 0 0 5px;
+    font-size: 17px;
+  }
+
+  .rating {
+    color: #a06a08;
+    font-weight: 800;
+  }
+
+  .tag {
+    display: inline-block;
+    margin: 4px 4px 0 0;
+    padding: 3px 8px;
+    color: #6b4034;
+    font-size: 13px;
+    border-radius: 999px;
+    background: #f7e8c8;
+  }
+
+  .warning {
+    color: #a51e22;
+    font-weight: 700;
+  }
+
+  .summary {
+    margin-top: 32px;
+    padding: 20px;
+    border: 1px solid #e4c875;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #fff3cf, #fff9e9);
+  }
+
+  .placeholder {
+    padding: 20px;
+    border-radius: 16px;
+    background: #fffdf8;
+    box-shadow: 0 7px 22px rgba(94, 49, 32, 0.08);
+  }
+
+  footer {
+    padding: 25px;
+    color: #7f5547;
+    text-align: center;
+  }
+
+  .view-switch {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 24px 0 14px;
+  }
+
+  .view-button {
+    padding: 14px 12px;
+    color: #4a2d27;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    border: 1px solid #e8d2a5;
+    border-radius: 12px;
+    background: #fffdf8;
+  }
+
+  .view-button.active {
+    color: white;
+    border-color: #a51f2d;
+    background: #a51f2d;
+    box-shadow: 0 5px 14px rgba(143, 22, 36, 0.18);
+  }
+
+  .day-switch {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+  }
+
+  .day-button {
+    flex: 1;
+    min-width: 70px;
+    padding: 10px 12px;
+    color: #4a2d27;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid #e8d2a5;
+    border-radius: 999px;
+    background: #fffdf8;
+  }
+
+  .day-button.active {
+    color: white;
+    border-color: #a51f2d;
+    background: #a51f2d;
+    box-shadow: 0 4px 12px rgba(143, 22, 36, 0.16);
+  }
+
+  .view-button:hover,
+  .day-button:hover {
+    border-color: #c28a27;
+  }
+
+  #trip-map {
+    width: 100%;
+    height: 620px;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+
+  .map-placeholder {
+    padding: 44px 20px;
+    color: #8e1725;
+    font-weight: 800;
+    text-align: center;
+    border: 1px dashed #d9ad52;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #fff3cf, #fffaf0);
+  }
+
+  .map-view,
+  .itinerary-view {
+    display: none;
+  }
+
+  .map-view.active,
+  .itinerary-view.active {
+    display: block;
+  }
+
+  .day-section {
+    display: none;
+  }
+
+  .day-section.active {
+    display: block;
+  }
+
+  .map-popup-title {
+    margin-bottom: 4px;
+    font-weight: 800;
+  }
+
+  @media (max-width: 650px) {
+    .restaurant-grid {
+      grid-template-columns: 1fr;
     }
 
     .timeline {
-      position: relative;
-      margin-left: 18px;
-      padding-left: 28px;
-      border-left: 3px solid #bfd4e7;
-    }
-
-    .event {
-      position: relative;
-      margin-bottom: 24px;
-      padding: 20px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 7px 22px rgba(29, 48, 66, 0.08);
+      margin-left: 8px;
+      padding-left: 22px;
     }
 
     .event::before {
-      position: absolute;
-      top: 24px;
-      left: -39px;
-      width: 16px;
-      height: 16px;
-      content: "";
-      border: 4px solid #f3f5f7;
-      border-radius: 50%;
-      background: #0f4c81;
+      left: -33px;
     }
 
-    .time {
-      display: inline-block;
-      margin-bottom: 8px;
-      padding: 4px 11px;
-      color: #0f4c81;
-      font-size: 14px;
-      font-weight: 800;
-      border-radius: 999px;
-      background: #e9f2f9;
+    .event {
+      padding: 17px;
     }
 
-    .event h3 {
-      margin: 0 0 8px;
-      font-size: 21px;
+    #trip-map {
+      height: 480px;
     }
-
-    .event p {
-      margin: 6px 0;
-    }
-
-    .tip {
-      margin-top: 12px;
-      padding: 12px 14px;
-      border-left: 4px solid #e39b19;
-      border-radius: 8px;
-      background: #fff8e7;
-    }
-
-    .map-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 12px;
-      padding: 10px 15px;
-      color: white;
-      font-weight: 700;
-      border-radius: 9px;
-      background: #247245;
-      transition: 0.2s;
-    }
-
-    .map-button:hover {
-      background: #185b34;
-      transform: translateY(-1px);
-    }
-
-    .restaurant-grid {
-      display: grid;
-      gap: 14px;
-      margin-top: 14px;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .restaurant {
-      padding: 16px;
-      border: 1px solid #e2e7eb;
-      border-radius: 13px;
-      background: #fafbfc;
-    }
-
-    .restaurant h4 {
-      margin: 0 0 5px;
-      font-size: 17px;
-    }
-
-    .rating {
-      color: #a86400;
-      font-weight: 800;
-    }
-
-    .tag {
-      display: inline-block;
-      margin: 4px 4px 0 0;
-      padding: 3px 8px;
-      color: #4b5563;
-      font-size: 13px;
-      border-radius: 999px;
-      background: #edf0f2;
-    }
-
-    .warning {
-      color: #a51e22;
-      font-weight: 700;
-    }
-
-    .summary {
-      margin-top: 32px;
-      padding: 20px;
-      border-radius: 16px;
-      background: #eaf4ec;
-    }
-
-    .placeholder {
-      padding: 20px;
-      border-radius: 16px;
-      background: white;
-      box-shadow: 0 7px 22px rgba(29, 48, 66, 0.08);
-    }
-
-    footer {
-      padding: 25px;
-      color: #68727d;
-      text-align: center;
-    }
-
-    @media (max-width: 650px) {
-      .restaurant-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .timeline {
-        margin-left: 8px;
-        padding-left: 22px;
-      }
-
-      .event::before {
-        left: -33px;
-      }
-
-      .event {
-        padding: 17px;
-      }
-    }
-    .view-switch {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin: 24px 0 14px;
-}
-
-.view-button {
-  padding: 14px 12px;
-  border: 1px solid #dce2e8;
-  border-radius: 12px;
-  background: white;
-  color: #243040;
-  font-size: 16px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.view-button.active {
-  background: #0f4c81;
-  color: white;
-  border-color: #0f4c81;
-}
-
-.day-switch {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 20px;
-  overflow-x: auto;
-}
-
-.day-button {
-  flex: 1;
-  min-width: 70px;
-  padding: 10px 12px;
-  border: 1px solid #dce2e8;
-  border-radius: 999px;
-  background: white;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.day-button.active {
-  background: #0f4c81;
-  color: white;
-}
-
-#trip-map {
-  width: 100%;
-  height: 620px;
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-.map-view,
-.itinerary-view {
-  display: none;
-}
-
-.map-view.active,
-.itinerary-view.active {
-  display: block;
-}
-
-.day-section {
-  display: none;
-}
-
-.day-section.active {
-  display: block;
-}
-
-.map-popup-title {
-  font-weight: 800;
-  margin-bottom: 4px;
-}
-
-@media (max-width: 650px) {
-  #trip-map {
-    height: 480px;
   }
-}
-  </style>
+</style>
 </head>
 
 <body>
@@ -353,7 +382,7 @@
   
 
     <p style="margin-top:18px;font-size:14px;opacity:.85;">
-        📅 最後更新：2026/08/17 12:07
+        📅 最後更新：2026/08/27 12:37
     </p>
 </header>
 
@@ -525,7 +554,7 @@
 
 <section id="day3" class="day-section" data-day="3">
   <div class="day-header">
-    <h2>2/4（四）Day 3</h2>
+    <h2>2/4（四）Day 3 小年夜</h2>
     <div>宮島與嚴島神社一日遊</div>
   </div>
 
@@ -571,7 +600,7 @@
 
 <section id="day4" class="day-section" data-day="4">
   <div class="day-header">
-    <h2>2/5（五）Day 4</h2>
+    <h2>2/5（五）Day 4 除夕</h2>
     <div>廣島市區觀光</div>
   </div>
 
@@ -607,7 +636,7 @@
 
 <section id="day5" class="day-section" data-day="5">
   <div class="day-header">
-    <h2>2/6（六）Day 5</h2>
+    <h2>2/6（六）Day 5 初一</h2>
     <div>前往廣島機場，返回台灣</div>
   </div>
 
